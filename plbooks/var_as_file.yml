@@ -1,0 +1,10 @@
+---
+ x: 45
+ y:
+ - 4
+ - 10
+ - 100
+ - "ansible"
+ pkgs:  
+  "centos": "httpd"
+  "ubuntu": "apache2"

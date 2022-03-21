@@ -1,0 +1,10 @@
+---
+ - name: Installing epel release for centos 8
+   hosts: centossys
+   gather_facts: no
+   become: true
+   tasks:
+   - name: Installing epel package on centos 8
+     yum: 
+      name: epel-release
+      state: latest

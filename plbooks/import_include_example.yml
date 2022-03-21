@@ -1,0 +1,14 @@
+---
+ - name: Installing multiple packages using import statement
+   hosts: linsys
+   become: true
+   tasks:
+   - block:
+     - import_tasks: install_webserver_redhat.yml
+     - import_tasks: install_java_redhat.yml
+     when: ansible_os_family == "RedHat"
+   - block:
+     - import_tasks: install_webserver_debian.yml
+     - import_tasks: install_java_debian.yml
+     when: ansible_os_family == "Debian"
+  

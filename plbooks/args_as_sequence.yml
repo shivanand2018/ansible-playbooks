@@ -1,0 +1,8 @@
+---
+ - name: Play to learn cmd line arguments as  sequence
+   hosts: localhost
+   gather_facts: no
+   tasks:
+    - debug:
+        msg: 
+         - "The value of x is: {{ x }} "

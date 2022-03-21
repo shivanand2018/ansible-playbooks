@@ -1,0 +1,15 @@
+---
+ - name: Play to show error handling in ansible
+   hosts: localhost
+   gather_facts: false
+   tasks:
+   - block:
+     - name:  Finding files in /home/ansadmin/tomcat8
+       command: "ls /home/ansadmin/tomcat8"
+       register: "tomcat8_out"
+     rescue:
+     - debug: 
+        msg: "The given path is not available"
+     always:
+     - debug:
+        msg: "This will always executes"

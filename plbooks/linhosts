@@ -1,0 +1,8 @@
+[ubuntusys]
+192.168.2.116
+[centossys]
+192.168.2.117 
+192.168.2.118
+[linsys:children]
+ubuntusys
+centossys

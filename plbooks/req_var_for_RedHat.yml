@@ -1,0 +1,12 @@
+---
+ - name: Installing httpd  on Redhat Server
+   yum:
+    name: httpd
+    state: present
+ - name: Installing Java on Redhat Server
+   yum:
+    name: java-1.8.0-openjdk
+    state: present
+ 
+
+

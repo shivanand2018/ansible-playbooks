@@ -1,0 +1,12 @@
+---
+ - name: playbook to create files
+   hosts: jgi
+   become: yes
+   tasks:
+   - name: creating files in the users home directory
+     file: 
+      path: test-03jan22 
+      state: directory
+      mode: 0765
+      owner: ansadmin
+      group: ansadmin

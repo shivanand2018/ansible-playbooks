@@ -1,0 +1,25 @@
+---
+ - name: Creating users on managed nodes
+   hosts: centossys
+   gather_facts: false
+   become: true
+   vars_files:
+    - user_list.yml
+   tasks: 
+   - name: Creating required groups
+     group:
+      name: operator
+      state: present
+   - group: 
+      name: students
+      state: present
+   - name: Adding users in nodes
+     user:
+      name: "{{ item.name }}"
+      shell: /bin/bash
+      password: "{{ item.name | password_hash('sha512') }}" 
+      createhome: yes
+      home: "/home/{{ item.name }}"
+      groups: students, wheel, operator
+      state: present
+     loop: "{{ users }}"

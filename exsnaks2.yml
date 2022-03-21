@@ -1,0 +1,15 @@
+---
+ - name: creating directories using loop
+   hosts: centossys
+   gather_facts: false
+   become: true
+   vars:
+   favorite_snacks:
+     - hotdog
+     - ice cream
+     - chips
+ - name: Create directories for storing my snacks
+   file: 
+    path: /etc/"{{ item }}"
+    state: directory
+   with_items: "{{ favorite_snacks }}"

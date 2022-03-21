@@ -1,0 +1,13 @@
+---
+ - name: Play to print user name and password using vars_prompt
+   hosts: localhost
+   gather_facts: false
+   vars_prompt:
+    - name: username
+      prompt: "Enter your name: "
+      private: no
+    - name: password
+      prompt: Enter your passowrd
+   tasks:
+    - debug:
+        msg: The username is {{ username }} and password is {{ password }}

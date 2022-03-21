@@ -1,0 +1,54 @@
+---
+ - name: installation and configuration of tomcat9 on ubuntu server
+   hosts: ubuntusys
+   gather_facts: false
+   become: true
+   vars:
+    java_ver: openjdk-8-jdk
+    tomcat_ver: 9.0.33
+    tomcat_url: https://archive.apache.org/dist/tomcat/tomcat-{{tomcat_ver.split(".")[0]}}/v{{tomcat_ver}}/bin/apache-tomcat-{{tomcat_ver}}.tar.gz
+    tomcat_port: 8090
+   environment:
+    https_proxy: http_proxy://192.168.1.253:3128
+   
+   tasks:
+   - name: Updating Software Repository
+     apt:
+      name: "*"
+      state: latest
+    
+   - name: Installing Java
+     apt:
+      name: "{{ java_ver }}"
+      state: present
+    
+   - name: Firewall settings to allow access through 8090
+     ufw:
+      rule: allow
+      port: 8090
+      proto: tcp
+   
+   - name: Downloading Tomcat9 
+     get_url:
+      url: "{{ tomcat_url }}"
+      dest: /usr/local
+      use_proxy: yes
+    
+   - name: Extracting the downloaded tomcat tar file
+     unarchive:
+      src: /usr/local/apache-tomcat-{{tomcat_ver}}.tar.gz
+      dest: /usr/local
+      remote_src: yes
+    
+   - name: Renaming tomcat directory
+     command: mv /usr/local/apache-tomcat-{{tomcat_ver}} /usr/local/tomcat9
+    
+   - name: Replacing default tomcat port with required tomcat port
+     template:
+      src: server.xml.j2
+      dest: /usr/local/tomcat9/conf/server.xml
+    
+   - name: Starting the tomcat server
+     shell: nohup /usr/local/tomcat9/bin/startup.sh &
+
+      

@@ -1,0 +1,15 @@
+---
+ - hosts: jgi
+   tasks:
+    - name: Creating file with contents
+      copy:
+       dest: $HOME/ansdir/content.txt
+       content: |
+         #include
+           using namespace std
+           int main() {
+             cout <<"hellow world" <<endl;
+           return 0;
+         }
+
+       #dest: $HOME/ansdir/content.txt

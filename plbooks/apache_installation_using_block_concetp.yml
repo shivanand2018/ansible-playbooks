@@ -1,0 +1,26 @@
+---
+ - name: Play to Manage Apache installation using block concept
+   hosts: linsys
+   become: true
+   tasks:
+   - block:
+     - name: Installing httpd on cenots 8
+       yum:
+        name: httpd
+        state: present
+     - name: Starting httpd server on centos 8
+       service:
+        name: httpd
+        state: started
+     when: ansible_os_family == "RedHat"
+   - block:
+     - name: Installing apache2 on ubuntu-20.04
+       apt:
+        name: apache2
+        state: present
+     - name: Starting apache2 service on ubuntu-20.04
+       service:
+        name: apache2
+        state: started
+     when: ansible_os_family == "Debian"
+   

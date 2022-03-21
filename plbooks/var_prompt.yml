@@ -1,0 +1,17 @@
+---
+ - hosts: localhost
+   gather_facts: no
+   vars:
+     x: 47
+     My_company: inurture
+   vars_prompt:
+     - name: y
+       prompt: Enter the y value?
+       private: no
+   tasks:
+    - name: Printing the enter variable
+      debug:
+        msg:
+         -  "The value of x is: {{ x }}"
+         - "The value of y is: {{ y }}"
+         - "My name is: {{ My_company }}"

@@ -1,0 +1,9 @@
+---
+ - name: Use motd role playbook
+   hosts: centossys
+ #  user: ansible
+   become: true
+   
+   roles:
+   - role: motd
+     system_manager: admin@locahost

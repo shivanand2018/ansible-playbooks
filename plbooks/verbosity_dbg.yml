@@ -1,0 +1,11 @@
+---
+ - name: Usage of verbosity in debug module
+   hosts: localhost
+   tasks:
+    - name: Verbosity as default
+      debug:
+       msg: "This is default message"
+    - name: Verbosity 2 
+      debug: 
+       var: ansible_hostname
+       verbosity: 2

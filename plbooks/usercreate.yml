@@ -1,0 +1,12 @@
+---
+ - name: Creating Users on remote system
+   become: true 
+   hosts: jgi
+   tasks:
+    #- group: 
+     #  name: devops
+     #  state: absent
+    - name:  removing devops user
+      user: 
+       name: devops
+       state: absent 

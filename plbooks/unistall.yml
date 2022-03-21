@@ -1,0 +1,11 @@
+---
+ - hosts: jgi
+   become: true
+   vars:
+     pkgs: 
+      - nginx*
+      - php*
+      - mysql-serve*
+   tasks:
+    - name: Uninstalling packages
+      apt: name="{{pkgs}}" state=absent

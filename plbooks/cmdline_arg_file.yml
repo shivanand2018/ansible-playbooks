@@ -1,0 +1,11 @@
+---
+ - name: Play to accept command line arguments from a file
+   hosts: localhost
+   gather_facts: no
+   tasks:
+    - debug: 
+       msg: 
+        - "The value of x is: {{ x }}"
+        - " The value of y are {{ y }}"
+        - " The packages are {{ pkgs }}"
+      

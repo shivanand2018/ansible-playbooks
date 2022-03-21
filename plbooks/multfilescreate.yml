@@ -1,0 +1,19 @@
+---
+ - name: Creating Multilple files on nodes
+   hosts: jgi
+   tasks:
+    - name: creating directory in user home directory
+      file:
+       path: $HOME/ansdir
+       state: directory
+       mode: 0755
+                     
+    - name: Creating files
+      file: 
+       path: $HOME/ansdir/{{ item }}
+       state: touch
+      with_items:
+       - test1.py
+       - cfile.c
+       - example.doc
+       - example2.doc

@@ -1,0 +1,43 @@
+---
+# tasks file for apache_vhost
+ - name: updating centos repository
+   yum:
+    name: "*"
+    state: latest
+ - name: Installing http server
+   yum:
+    name: httpd
+    state: present
+ - name: starting httpd server
+   service: 
+    name: httpd
+    state: started
+    enabled: true
+ - name: Permit traffic in default zone for http service
+   firewalld:
+    service: http
+    permanent: yes
+    immediate: yes
+    state: enabled
+ - name: Creating virtualhost document directory
+   file:
+    path: /var/www/{{ ansible_fqdn}}/html
+    state: directory
+    mode: '0755'
+ - name: Copying virtualhost httpd configuration files
+   template:
+    src: templates/vhost.conf.j2
+    dest: /etc/httpd/conf.d/vhost.conf
+    owner: root
+    group: root
+    mode: 0775
+   notify: restart_httpd
+ - name: Copying webpages to document root directory
+   template:
+    src: templates/index.html.j2
+    dest: /var/www/{{ansible_fqdn}}/html/index.html
+   notify: restart_httpd
+ 
+    
+
+

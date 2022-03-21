@@ -1,0 +1,13 @@
+---
+ - hosts: centossys
+   become: true
+   gather_facts: false
+   tasks:
+   - name: Configuring firewalld for apcahe tomact9
+     firewalld:
+      zone: public
+      port: 8090/tcp
+      permanent: true
+      immediate: true
+      state: disabled
+

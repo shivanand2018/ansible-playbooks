@@ -1,0 +1,7 @@
+---
+ - name: playbook to say hello world
+   hosts: jgi
+   tasks:
+   - name: say hello
+     debug: 
+      msg: "Hello iNurture"

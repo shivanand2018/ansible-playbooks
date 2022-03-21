@@ -1,0 +1,13 @@
+---
+ - hosts: centossys
+   gather_facts: false
+   become: true
+   tasks:
+   - name: Checking register module
+     shell: output=$(cat /var/log/mysqld.log | grep 'temporary password' | cut -d':' -f4)
+#     command: bash output.sh
+      
+#     register: my_password
+   - name: displaying registered output
+     debug: 
+      msg: The password is "{{ output }}"

@@ -1,0 +1,27 @@
+---
+ - name: Play to uninstall apache server on centos 8 and ubuntu-20.04
+   hosts: all
+   become: true
+   tasks:
+    - name: stopping httpd service
+      service:
+       name: httpd
+       state: stopped
+      when: ansible_os_family == "RedHat"
+    - name: removing apache web server 
+      yum: 
+       name: httpd
+       state: absent
+      when: ansible_os_family == "RedHat"
+    
+    - name: stoping the apache2 service on ubuntu
+      service:
+       name: apache2
+       state: stopped
+      when: ansible_os_family == "Debian"
+    - name: removing apache web server from ubuntu
+      apt:
+       name: apache2
+       state: absent
+      when: ansible_os_family == "Debian"
+

@@ -1,0 +1,29 @@
+---
+ - name: Playbook to learn file management
+   hosts: jgi
+   become: yes
+   tasks:
+    - name: Creating File in etc directory
+      file:
+       path: /etc/foo.conf
+       owner: root
+       group: root
+       mode: 0644
+       state: touch 
+#   file:
+#   - name: copying file from src to dest
+#     src: /etc/foo.conf
+#     dest: /home/ansadmin/foo
+#     owner: ansadmin
+#     group: ansadmin
+#     state: link
+#   file:
+#     src: '/tmp{{ item.src }}'
+#     dest: '{{item.dest }}'
+#     state: link
+ #  with_items:
+ #    - { src: 'x', dest: 'y' }
+  #   - { src: 'z', dest: 'k' }
+   
+
+  

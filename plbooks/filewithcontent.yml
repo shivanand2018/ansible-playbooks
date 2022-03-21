@@ -1,0 +1,8 @@
+---
+ - hosts: jgi
+   tasks:
+    - name: Creating file with contents
+      copy:
+       content: "hello world\n this is second line\n"
+       dest: $HOME/ansdir/content.txt
+

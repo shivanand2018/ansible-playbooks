@@ -1,0 +1,19 @@
+---
+ - name: Simple play to understand registering output
+   hosts: localhost
+   gather_facts: false
+   tasks: 
+    - command: "ls /home/ansadmin/tomcat7"
+      register: "tomcat7"
+      ignore_errors: yes
+    - debug: var=tomcat7
+    - command: "ls /home/ansadmin/tomcat8"
+      register: "tomcat8"
+      ignore_errors: yes
+    - debug: var=tomcat8
+    - command: "ls /home/ansadmin/tomcat9"
+      register: "tomcat9"
+      ignore_errors: yes
+    - debug: var=tomcat9
+      
+

@@ -1,0 +1,13 @@
+---
+ - name: Installing Pacakages on ubuntu systems
+   hosts: ubuntusys
+   become: true
+   tasks:
+    - name: Installing wget
+      apt:
+       name: curl
+       state: present
+    - name: Installing nginx
+      apt: 
+       name: nginx
+       state: present

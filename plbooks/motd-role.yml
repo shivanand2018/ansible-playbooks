@@ -1,0 +1,9 @@
+---
+ - name: use motd role playbook
+   hosts: centossys
+   user: ansadmin
+   become: true
+
+   roles:
+   - role: motd
+     system_manager: pshivanand@gmail.com

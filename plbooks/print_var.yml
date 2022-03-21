@@ -1,0 +1,9 @@
+#!/usr/bin/env  ansible-playbook
+ - name: Play to use debug module to print variable value
+   hosts: all
+ #  gather_facts: no
+   tasks:
+    - name: printing variable value
+      debug:
+       msg: "The host name is: {{ ansible_hostname }}"
+      # var: ansible_hostname  #To print variable value without any message

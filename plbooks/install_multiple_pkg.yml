@@ -1,0 +1,27 @@
+---
+ - name: Installing multiple packages on centos and ubuntu
+   hosts: linsys
+   become: true
+   tasks:
+   - block:
+     - name: Installing webserver on Redhat family
+       yum:
+        name: httpd
+        state: present
+     - name: Installing Java on Redhat family
+       yum:
+        name: java-1.8.0-openjdk
+        state: present
+     when: ansible_os_family == "RedHat"
+   - block:
+     - name: Installing webserver on Debian family
+       apt:
+        name: apache2
+        state: present
+     - name: Installing Java on Debian family
+       apt:
+        name: openjdk-8-jdk
+        state: present
+     when: ansible_os_family == "Debian"
+ 
+  

@@ -1,0 +1,5 @@
+https://repo.mysql.com/mysql80-community-release-el8.rpm
+https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-community-server-8.0.28-1.el8.x86_64.rpm
+https://dev.mysql.com/get/mysql80-community-release-el7-5.noarch.rpm
+
+https://dev.mysql.com/get/mysql80-community-release-el8-3.noarch.rpm

@@ -1,0 +1,22 @@
+---
+ - name: Simple play to launch ec2 instance
+   hosts: localhost
+   connection: local
+   gather_facts: false
+   environment:
+     http_proxy: http://192.168.1.253:3128
+     https_proxy: https://192.168.1.253:3128
+   tasks:
+   - name: Simple task to launch ec2 instance with default values
+     ec2:
+      instalnce-type: t2.micro
+      image: ami-0b614a5d911900a9b
+      region: us-east-2
+      wait: yes
+#      security_groupname: ansible-ec2
+      count: 1
+      vpc_id: vpc-018f369edffac9974
+      aws_access_key: AKIAWAROMZLSDMO76FPK
+      aws_secret_key: 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
+      assign_public_ip: yes
+      use_proxy: yes

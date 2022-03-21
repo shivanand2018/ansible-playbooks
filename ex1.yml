@@ -1,0 +1,15 @@
+---
+ - name: Ansible using loop
+   hosts: centossys
+   gather_facts: false
+   become: true
+   tasks:
+   - name: Add lines to this file
+     lineinfile: 
+      dest: /tmp/file 
+      line: "{{ item }}" 
+      stat: present
+     with_items:
+      - line 1
+      - line 2
+      - line 3

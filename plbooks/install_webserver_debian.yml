@@ -1,0 +1,6 @@
+---
+ - name: Installin webserver on Redhat family
+   yum:
+    name: apache2
+    state: present
+

@@ -1,0 +1,6 @@
+---
+ - name: Play to print scalar variable
+   hosts: localhost
+   gather_facts: false
+   tasks:
+    - debug: var=x

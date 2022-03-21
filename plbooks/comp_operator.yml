@@ -1,0 +1,15 @@
+---
+ - name: Working with comparison operators
+   hosts: localhost
+   gather_facts: false
+   vars:
+    x: 8
+    y: 10
+   tasks: 
+    - debug:
+       msg:
+       - "x==y: {{ x==y }}"
+       - "x != y: {{ x!=y }}"
+       - "x < y: {{ x<y }}"
+       - "x > y: {{ x>y }}"
+        

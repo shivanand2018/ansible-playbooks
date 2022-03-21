@@ -1,0 +1,9 @@
+---
+ - name: Installin webserver on Ubuntu Server
+   apt:
+    name: apache2
+    state: present
+ - name: Installing Java on Ubuntu Server
+   apt:
+    name: openjdk-8-jdk
+    state: present

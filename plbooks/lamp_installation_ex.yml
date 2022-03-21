@@ -1,0 +1,44 @@
+---
+ - name: Installing and running LAMP server usning Handlers
+   hosts: centossys
+   gather_facts: false
+   become: yes
+  # environment:
+   #  https_proxy: https://192.168.1.253:3128
+   tasks:
+   - name:  upating centos 8 repository
+     yum:
+      name: "*"
+      state: latest
+#      use_proxy: yes
+   - name: Installing Apache, mysql and php
+     yum:
+      name:
+       - httpd
+       - mariadb
+       - php
+      state: installed
+ #     use_proxy: yes
+   - name: Starting and Enabling httpd service
+     service: 
+      name: httpd
+      state: started
+      enabled: yes
+   - name: Starting and Enabling mysqld service
+     service:
+      name: mariadb
+      state: started
+      enabled: yes
+   - name: Copying php file to /vaw/ww/html directory
+     copy:
+      src: /home/ansadmin/playbook/lin_playbooks/index.php
+      dest: /var/www/html/index.php
+      force: yes
+     notify:
+     - restart httpd service
+   handlers:
+   -  name: restart httpd service
+      service:
+       name: httpd
+       state: restarted
+     

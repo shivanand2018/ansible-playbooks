@@ -1,0 +1,16 @@
+---
+ - name: play to print variable value
+   hosts: localhost
+   gather_facts: false
+   vars:
+    x: 45
+    y: 80
+    My_Name: "shivanand"
+    Organization: "iNurture"
+   tasks:
+    - name: Printing variable values
+      debug:
+       msg:
+        - "The value of x is: {{ x }}"
+        - "My name is : {{ My_Name }}"
+         

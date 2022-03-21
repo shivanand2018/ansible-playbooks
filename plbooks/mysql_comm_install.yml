@@ -1,0 +1,72 @@
+---
+ - name: Installing mysql community edition
+   hosts: centossys
+   become: true
+   gather_facts: false
+   vars:
+    mysql_ver: mysql80-community-release-el8-1.noarch.rpm
+    centos_repo: https://repo.mysql.com/yum/mysql-8.0-community/el/8/x86_64/{{mysql_ver }}
+    new_passwd: admin@#123
+   environment:
+    https_proxy: http://192.168.1.253:3128
+   tasks:
+   - name: Adding Oracle repositories to your system
+     get_url:
+      url: "{{ centos_repo }}"
+      dest: /usr/local
+      use_proxy: yes
+   - name: Installing the  package
+     yum:
+      name: /usr/local/{{ mysql_ver }}
+      state: present
+      disable_gpg_check: yes
+#We need to Disable existing mysql client using yum module disable mysql cmd before installing mysql-community-server
+   - name: Installing mysql-community-server
+     yum:
+      name: mysql-community-server
+      state: present
+      disable_gpg_check: yes 
+  
+   - name: Disabling existing mysql module
+     command  : yum module disable mysql
+#      name: mysqld 
+#      enabled: no
+
+   - name: Staring and Enabling mysql service
+     service:
+      name: mysqld
+      state: started
+      enabled: yes
+
+#   - name: Parse the logfile for temporary password
+#     command: grep 'temporary password' /var/log/mysqld.log
+#     register: pass_line
+#     become: yes
+#   - name: Register the password
+#     set_fact:
+#      tmp_password: "{{ pass_line.stdout | regex_search(regexp, '\\1') }}"
+#     vars:
+#      regexp: ': (.+)$'
+#   - name: Set MySQL root Password
+#     mysql_user:
+#        login_host: 'localhost'
+#        login_user: 'root'
+#        login_password: "{{ tmp_password }}"
+#        name: 'root'
+#        password: "{{ new_passwd }}"
+#        state: present
+#
+#     mysql_user:
+#      login_user: root
+#      login_password: "{{ tmp__password }}"
+#      name: root
+#      password: "{{ new_passwd }}"
+#      priv: '*.*:ALL,GRANT'
+#      state: present
+#      host: '%'
+#  - name: running shell script on remote node
+#     script: /home/ansadmin/playbooks/lin_playbooks/set_mysql_pass.sh
+   - name: Installing mysql-Work bench-Community
+     yum:
+      name: mysql-workbench-commuinity
+      state: present

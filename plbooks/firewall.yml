@@ -1,0 +1,11 @@
+---
+ - name: Firewalld configuration
+   hosts: centossys
+   gather_facts: false
+   tasks:
+   - name: Configuring firewalld
+     firewalld:
+       zone: public
+       port: 8090/tcp
+       permanent: true
+       state: enabled

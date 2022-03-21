@@ -1,0 +1,13 @@
+---
+ - name: This is a simple play to install/uninstall httpd package
+   hosts: centossys
+   gather_facts: false
+   become: true
+   tasks:
+    - name: working with {{ pkg }} package
+      yum :
+        name: "{{ pkg }}"
+        state: "{{ req_state }}"
+
+     
+

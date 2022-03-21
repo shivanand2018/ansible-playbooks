@@ -1,0 +1,10 @@
+---
+ - name: Play to accept command line arguments from json file
+   hosts: localhost
+   gather_facts: false
+   tasks:
+    - debug:
+       msg:
+         - "The value of p is : {{ p }}"
+         - "The values of q is : {{ q }}"
+         - "The value of r is : {{ r }}" 

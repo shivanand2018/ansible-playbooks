@@ -1,0 +1,17 @@
+---
+ - name: Add the user 'johnd' with a specific uid and add groups admin, wheel 
+   hosts: centossys
+   gather_facts: false
+   become: true
+   vars:
+    password: "john@#44"
+   tasks:
+   - name: Creating user 
+     user:
+      name: john
+      comment: jhon doe
+      uid: 1040
+      groups: admin,wheel
+      password: "{{ 'password' | password_hash('sha512') }}"
+      shell: /bin/bash
+      append: yes

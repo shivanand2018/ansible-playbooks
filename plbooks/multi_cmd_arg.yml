@@ -1,0 +1,9 @@
+---
+ - name: Play to print multiple variables
+   hosts: localhost
+   gather_facts: false
+   tasks:
+    - debug:
+       msg: 
+        - "The value of x is: {{ x }}"
+        - "The value of y is: {{ y }}"
